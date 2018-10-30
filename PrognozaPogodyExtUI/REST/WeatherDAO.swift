@@ -13,8 +13,7 @@ class WeatherDAO {
     static var imageCache: [String: UIImage] = [:]
     
     static func getWeatherInformationForWOEID(woeid: String, locationName: String) -> WeathersInLocation {
-        var weathers: [DayWeatherInLocation] = [DayWeatherInLocation]()
-        var locationWeathers: WeathersInLocation = WeathersInLocation()
+        let locationWeathers: WeathersInLocation = WeathersInLocation()
         locationWeathers.location = "Warsaw"
         let url: URL = URL(string: "https://www.metaweather.com/api/location/\(woeid)/")!
         let session = URLSession.shared
