@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3F1AB84521887489001441AD /* WeathersInLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F1AB84421887489001441AD /* WeathersInLocation.swift */; };
+		3F1AB8472188760C001441AD /* WeatherDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F1AB8462188760C001441AD /* WeatherDAO.swift */; };
 		3F5D1F5D217F1D73006F6E7B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F5D1F5C217F1D73006F6E7B /* AppDelegate.swift */; };
 		3F5D1F5F217F1D73006F6E7B /* MasterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F5D1F5E217F1D73006F6E7B /* MasterViewController.swift */; };
 		3F5D1F61217F1D73006F6E7B /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F5D1F60217F1D73006F6E7B /* DetailViewController.swift */; };
@@ -17,6 +19,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3F1AB84421887489001441AD /* WeathersInLocation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeathersInLocation.swift; sourceTree = "<group>"; };
+		3F1AB8462188760C001441AD /* WeatherDAO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherDAO.swift; sourceTree = "<group>"; };
 		3F5D1F59217F1D73006F6E7B /* PrognozaPogodyExtUI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PrognozaPogodyExtUI.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3F5D1F5C217F1D73006F6E7B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3F5D1F5E217F1D73006F6E7B /* MasterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MasterViewController.swift; sourceTree = "<group>"; };
@@ -74,6 +78,8 @@
 			isa = PBXGroup;
 			children = (
 				3F5D1F71217F223D006F6E7B /* DayWeatherInLocation.swift */,
+				3F1AB84421887489001441AD /* WeathersInLocation.swift */,
+				3F1AB8462188760C001441AD /* WeatherDAO.swift */,
 			);
 			path = REST;
 			sourceTree = "<group>";
@@ -151,6 +157,8 @@
 			files = (
 				3F5D1F61217F1D73006F6E7B /* DetailViewController.swift in Sources */,
 				3F5D1F72217F223D006F6E7B /* DayWeatherInLocation.swift in Sources */,
+				3F1AB84521887489001441AD /* WeathersInLocation.swift in Sources */,
+				3F1AB8472188760C001441AD /* WeatherDAO.swift in Sources */,
 				3F5D1F5F217F1D73006F6E7B /* MasterViewController.swift in Sources */,
 				3F5D1F5D217F1D73006F6E7B /* AppDelegate.swift in Sources */,
 			);

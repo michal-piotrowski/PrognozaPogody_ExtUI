@@ -12,7 +12,6 @@ class DetailViewController: UIViewController {
 
     @IBOutlet weak var detailDescriptionLabel: UILabel!
 
-
     func configureView() {
         // Update the user interface for the detail item.
         if let detail = detailItem {
@@ -85,7 +84,7 @@ class DetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         prepVisually()
-        getWeatherInformation(url_str:"https://www.metaweather.com/api/location/\(WOEID_WARSAW)/")
+        getWeatherInformationForWOEID(woeid: WOEID_WARSAW)
     }
     
     func prepVisually() {
@@ -99,8 +98,8 @@ class DetailViewController: UIViewController {
         prevButton.isEnabled = false
     }
     
-    func getWeatherInformation(url_str: String) {
-        let url: URL = URL(string: url_str)!
+    func getWeatherInformationForWOEID(woeid: String) {
+        let url: URL = URL(string: "https://www.metaweather.com/api/location/\(woeid)/")!
         let session = URLSession.shared
         var json: [String: Any] = [:]
         let task = session.dataTask(with: url, completionHandler: {
@@ -108,7 +107,7 @@ class DetailViewController: UIViewController {
             if data != nil {
                 do {
                     json = try JSONSerialization.jsonObject(with: data!, options: []) as! [String: Any]
-                    self.fillWeatherForNDays(json: json)
+                    self.weathers = self.getWeatherForNDays(json: json)
                     self.setInitialView()
                 }
                 catch
@@ -118,7 +117,6 @@ class DetailViewController: UIViewController {
             }
         })
         task.resume()
-        
     }
     /**
      "id": 6722833333878784,
@@ -137,7 +135,8 @@ class DetailViewController: UIViewController {
      "visibility": 10.001901395848247,
      "predictability": 70
      */
-    func fillWeatherForNDays (json: [String: Any]?){
+    func getWeatherForNDays (json: [String: Any]?) -> [DayWeatherInLocation] {
+        var weathers: [DayWeatherInLocation] = [DayWeatherInLocation]()
         for i in 0...(json!["consolidated_weather"] as! [[String: Any]]).count - 1 {
             let singleWeatherDict = (json!["consolidated_weather"]as! [[String: Any]])[i]
             let dayWeather = DayWeatherInLocation()
@@ -150,12 +149,11 @@ class DetailViewController: UIViewController {
             dayWeather.air_pressure = (singleWeatherDict["air_pressure"] as! NSNumber)
             dayWeather.applicable_date = (singleWeatherDict["applicable_date"] as! String)
             getImage(typeAbbr: dayWeather.weather_state_abbr!)
-            self.weathers.append(dayWeather)
+            weathers.append(dayWeather)
         }
-        //        for singleWeatherDict in json!["consolidated_weather"] as! [[String: Any]] {
-        //
-        //        }
+        return weathers;
     }
+    
     func setInitialView() {
         currentlyDisplayedWeatherNo = 0
         updateView(dayWeather: self.weathers[0])
