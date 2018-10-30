@@ -9,8 +9,6 @@
 import Foundation
 
 class WeathersInLocation {
-    var weathers: [DayWeatherInLocation] = [DayWeatherInLocation]()
-    var location: String!
-       
-    
+    public var weathers: [DayWeatherInLocation] = [DayWeatherInLocation]()
+    public var location: String!
 }

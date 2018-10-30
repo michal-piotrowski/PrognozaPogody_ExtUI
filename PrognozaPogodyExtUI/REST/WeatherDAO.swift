@@ -24,7 +24,7 @@ class WeatherDAO {
             if data != nil {
                 do {
                     json = try JSONSerialization.jsonObject(with: data!, options: []) as! [String: Any]
-                    location.weathers = self.getWeatherForNDays(json: json)
+                    locationWeathers.weathers = self.getWeatherForNDays(json: json)
                     //                    self.setInitialView()
                 }
                 catch
