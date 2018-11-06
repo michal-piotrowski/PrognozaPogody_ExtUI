@@ -5,7 +5,7 @@
 //  Created by Student on 30/10/2018.
 //  Copyright © 2018 MPiotrowski. All rights reserved.
 //
-
+import UIKit
 import Foundation
 
 class WeathersInLocation {

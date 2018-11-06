@@ -19,5 +19,5 @@ class DayWeatherInLocation {
     var wind_direction: NSNumber!
     var air_pressure: NSNumber!
     var applicable_date: String!
-    var weatherStateImage: UIImage!
+    var weather_state_image: UIImage!
 }

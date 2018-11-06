@@ -14,6 +14,7 @@ class MasterViewController: UITableViewController {
     var weathers = [WeathersInLocation]()
     
     private let WOEID_WARSAW: String = "523920"
+    private let WOEID_HELSINKI: String = "565346"
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,6 +36,7 @@ class MasterViewController: UITableViewController {
         // get weather for WARSAW, LONDON, HELSINKI FROM API
         
         weathers.append(WeatherDAO.getWeatherInformationForWOEID(woeid: WOEID_WARSAW, locationName: "Warszawa"))
+        weathers.append(WeatherDAO.getWeatherInformationForWOEID(woeid: WOEID_HELSINKI, locationName: "Helsinki"))
     }
 
     override func viewWillAppear(_ animated: Bool) {

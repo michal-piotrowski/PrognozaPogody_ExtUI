@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<VariablesViewState
+   version = "1.0">
+   <ContextStates>
+      <ContextState
+         contextName = "static WeatherDAO.getImage(typeAbbr:):WeatherDAO.swift">
+      </ContextState>
+      <ContextState
+         contextName = "DetailViewController.detailItem.didset:DetailViewController.swift">
+      </ContextState>
+      <ContextState
+         contextName = "closure #1 in static WeatherDAO.getWeatherInformationForWOEID(woeid:locationName:):WeatherDAO.swift">
+      </ContextState>
+      <ContextState
+         contextName = "closure #1 in DetailViewController.updateView(dayWeather:):DetailViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "WeatherDAO.getImage(typeAbbr: &quot;hr&quot;)">
+            </PersistentString>
+            <PersistentString
+               value = "dayWeather.weather_state_image">
+            </PersistentString>
+            <PersistentString
+               value = "self.weatherStateImage.image">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "MasterViewController.loadInitialCities():MasterViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "weathers">
+            </PersistentString>
+            <PersistentString
+               value = "WeatherDAO.getWeatherInformationForWOEID(woeid: WOEID_HELSINKI, locationName: &quot;Helsinki&quot;)">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "static WeatherDAO.getWeatherForNDays(json:):WeatherDAO.swift">
+      </ContextState>
+      <ContextState
+         contextName = "MasterViewController.prepare(for:sender:):MasterViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "weathers">
+            </PersistentString>
+            <PersistentString
+               value = "weathers[indexPath.row]">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "DetailViewController.configureView():DetailViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "scrollView">
+            </PersistentString>
+            <PersistentString
+               value = "detail.location">
+            </PersistentString>
+            <PersistentString
+               value = "detailItem">
+            </PersistentString>
+            <PersistentString
+               value = "detailItem.weathers[0]">
+            </PersistentString>
+            <PersistentString
+               value = "detailItem?.weathers[0]">
+            </PersistentString>
+            <PersistentString
+               value = "label.text">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "closure #1 in static WeatherDAO.getImage(typeAbbr:):WeatherDAO.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "img.size">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+   </ContextStates>
+</VariablesViewState>
