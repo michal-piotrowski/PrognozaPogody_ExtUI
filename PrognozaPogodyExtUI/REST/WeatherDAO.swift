@@ -12,7 +12,9 @@ class WeatherDAO {
 //
 //    static var imageCache: [String: UIImage] = [:]
 //
-    static var img: UIImage!
+    static var downloadedImages: [String: UIImage] = [:]
+
+    
     static func getWeatherInformationForWOEID(woeid: String, locationName: String) -> WeathersInLocation {
         let locationWeathers: WeathersInLocation = WeathersInLocation()
         locationWeathers.location = locationName
@@ -50,7 +52,7 @@ class WeatherDAO {
             dayWeather.wind_direction = (singleWeatherDict["wind_direction"] as! NSNumber)
             dayWeather.air_pressure = (singleWeatherDict["air_pressure"] as! NSNumber)
             dayWeather.applicable_date = (singleWeatherDict["applicable_date"] as! String)
-            dayWeather.weather_state_image = WeatherDAO.getImage(typeAbbr: dayWeather.weather_state_abbr!)
+            WeatherDAO.downloadImage(typeAbbr: dayWeather.weather_state_abbr!)
             weathers.append(dayWeather)
         }
         return weathers;
@@ -59,18 +61,22 @@ class WeatherDAO {
      TODO: REFACTOR self.imageCache[typeAbbr] == nil
      TO BE CHECKED BEFORE CREATING URL, SESSION, TASK
      */
-    static func getImage(typeAbbr:String) -> UIImage {
+    static func downloadImage(typeAbbr:String) {
+        if (downloadedImages.keys.contains(typeAbbr)) {
+            return
+        }
         let url: URL = URL(string: "https://www.metaweather.com/static/img/weather/png/\(typeAbbr).png")!
         let session = URLSession.shared
-        self.img = nil
         let task = session.dataTask(with: url, completionHandler: {
             (data, response, error) in
+            if (error != nil) {
+                print(error!)
+                return
+            }
             if data != nil {
-                print("image data isn't nil")
-                self.img = UIImage(data: data!)!
+                self.downloadedImages[typeAbbr] = UIImage(data: data!)
             }
         })
         task.resume()
-        return self.img
     }
 }

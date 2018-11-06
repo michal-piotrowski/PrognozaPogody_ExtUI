@@ -82,14 +82,12 @@ class DetailViewController: UIViewController {
     var currentlyDisplayedWeatherInd = 0
     
     
-    
-    
-    
-    
     func updateView(dayWeather: DayWeatherInLocation) {
         DispatchQueue.main.async {
-            self.weatherStateImage.image = WeatherDAO.getImage(typeAbbr: "hr")
-            self.weatherStateImage.setNeedsDisplay()
+//            WeatherDAO.downloadImage(typeAbbr: "hr")
+//            self.weatherStateImage.image = WeatherDAO.downloadedImages["hr"]!
+//            self.weatherStateImage.setNeedsDisplay()
+            self.weatherStateImage.image = WeatherDAO.downloadedImages[dayWeather.weather_state_abbr]
             self.weatherState.text = dayWeather.weather_state_name
             self.dateOfActiveWeather.text = dayWeather.applicable_date
             self.minTemp.text = String(format:"%.1f°C", dayWeather.min_temp.floatValue)
