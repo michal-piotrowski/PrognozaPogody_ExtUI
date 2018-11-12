@@ -18,6 +18,7 @@ class WeatherDAO {
     static func getWeatherInformationForWOEID(woeid: String, locationName: String) -> WeathersInLocation {
         let locationWeathers: WeathersInLocation = WeathersInLocation()
         locationWeathers.location = locationName
+        locationWeathers.woeid = woeid
         let url: URL = URL(string: "https://www.metaweather.com/api/location/\(woeid)/")!
         let session = URLSession.shared
         var json: [String: Any] = [:]
@@ -39,6 +40,37 @@ class WeatherDAO {
         return locationWeathers
     }
     
+    static func fillTableViewCellWithWeather(woeid: String, locationName: String, weatherCell: WeatherTableCell) -> WeathersInLocation {
+        let locationWeathers: WeathersInLocation = WeathersInLocation()
+        locationWeathers.location = locationName
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy/MM/dd"
+        let dateStr = formatter.string(from: Date())
+        let url: URL = URL(string: "https://www.metaweather.com/api/location/\(woeid)/\(dateStr)")!
+        let session = URLSession.shared
+        var json: [String: Any] = [:]
+        let task = session.dataTask(with: url, completionHandler: {
+            (data, response, error) in
+            if data != nil {
+                do {
+                    json = try JSONSerialization.jsonObject(with: data!, options: []) as! [String: Any]
+//                    locationWeathers.weathers = self.getWeatherForNDays(json: json)
+                    //                    self.setInitialView()
+                    let singleWeatherDict = ( json["consolidated_weather"]as! [[String: Any]])[0]
+                    DispatchQueue.main.async {
+                        weatherCell.cityName.text = locationName
+                        weatherCell.temperature.text = String(format:"%.1f", singleWeatherDict["the_temp"] as! NSNumber) 
+                    }
+                }
+                catch
+                {
+                    return
+                }
+            }
+        })
+        task.resume()
+        return locationWeathers
+    }
     static func getWeatherForNDays (json: [String: Any]?) -> [DayWeatherInLocation] {
         var weathers: [DayWeatherInLocation] = [DayWeatherInLocation]()
         for i in 0...(json!["consolidated_weather"] as! [[String: Any]]).count - 1 {

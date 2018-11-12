@@ -6,24 +6,13 @@
          contextName = "static WeatherDAO.getImage(typeAbbr:):WeatherDAO.swift">
       </ContextState>
       <ContextState
-         contextName = "DetailViewController.detailItem.didset:DetailViewController.swift">
+         contextName = "static WeatherDAO.getWeatherForNDays(json:):WeatherDAO.swift">
       </ContextState>
       <ContextState
          contextName = "closure #1 in static WeatherDAO.getWeatherInformationForWOEID(woeid:locationName:):WeatherDAO.swift">
       </ContextState>
       <ContextState
-         contextName = "closure #1 in DetailViewController.updateView(dayWeather:):DetailViewController.swift">
-         <PersistentStrings>
-            <PersistentString
-               value = "WeatherDAO.getImage(typeAbbr: &quot;hr&quot;)">
-            </PersistentString>
-            <PersistentString
-               value = "dayWeather.weather_state_image">
-            </PersistentString>
-            <PersistentString
-               value = "self.weatherStateImage.image">
-            </PersistentString>
-         </PersistentStrings>
+         contextName = "DetailViewController.detailItem.didset:DetailViewController.swift">
       </ContextState>
       <ContextState
          contextName = "MasterViewController.loadInitialCities():MasterViewController.swift">
@@ -37,7 +26,40 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "static WeatherDAO.getWeatherForNDays(json:):WeatherDAO.swift">
+         contextName = "closure #1 in closure #1 in MasterViewController.tableView(_:cellForRowAt:):MasterViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "weathers[0].weather_state_image">
+            </PersistentString>
+            <PersistentString
+               value = "cell.temperature.text">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "closure #1 in DetailViewController.updateView(dayWeather:):DetailViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.weatherStateImage.image">
+            </PersistentString>
+            <PersistentString
+               value = "self.header.title">
+            </PersistentString>
+            <PersistentString
+               value = "WeatherDAO.getImage(typeAbbr: &quot;hr&quot;)">
+            </PersistentString>
+            <PersistentString
+               value = "dayWeather.weather_state_image">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "MasterViewController.tableView(_:cellForRowAt:):MasterViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "WeatherDAO.downloadedimages">
+            </PersistentString>
+         </PersistentStrings>
       </ContextState>
       <ContextState
          contextName = "MasterViewController.prepare(for:sender:):MasterViewController.swift">

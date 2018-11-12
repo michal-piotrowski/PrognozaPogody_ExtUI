@@ -46,6 +46,7 @@ class DetailViewController: UIViewController {
     @IBOutlet weak var windDir: UILabel!
     @IBOutlet weak var pressure: UILabel!
     
+    @IBOutlet weak var header: UINavigationItem!
     @IBOutlet weak var nextButton: UIButton!
     @IBOutlet weak var prevButton: UIButton!
     
@@ -87,7 +88,8 @@ class DetailViewController: UIViewController {
 //            WeatherDAO.downloadImage(typeAbbr: "hr")
 //            self.weatherStateImage.image = WeatherDAO.downloadedImages["hr"]!
 //            self.weatherStateImage.setNeedsDisplay()
-            self.weatherStateImage.image = WeatherDAO.downloadedImages[dayWeather.weather_state_abbr]
+            self.header.title = self.detailItem?.location
+            self.weatherStateImage.image =  WeatherDAO.downloadedImages[dayWeather.weather_state_abbr]
             self.weatherState.text = dayWeather.weather_state_name
             self.dateOfActiveWeather.text = dayWeather.applicable_date
             self.minTemp.text = String(format:"%.1f°C", dayWeather.min_temp.floatValue)
