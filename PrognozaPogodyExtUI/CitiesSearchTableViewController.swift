@@ -8,65 +8,60 @@
 
 import UIKit
 
-class CitiesSearchTableViewController: UITableViewController {
+class CitiesSearchTableViewController: UITableViewController, UISearchBarDelegate {
     @IBOutlet weak var searchBar: UISearchBar!
     
-    var cities: [String: String] = [
-        "Ciudad de Buenos Aires": "468739",
-        "Buenos Aires": "344675",
-        "Buenos Aires": "152190",
-        "Lajeado Novo": "458847",
-        "Morrop": "418679",
-        "Trujillo Province": "418680",
-        "Morales Izabal Depart": "111234",
-        "Escarcega": "113900",
-        "San Andres": "81233",
-        "Huehuetenango": "812318",
-        "Alicante": "370516",
-        "Lima": "723503",
-        "Panama": "155070",
-        "Hermosillo": "113870",
-        "Chame": "155074",
-        "Guaymas": "113873",
-        "Tonosi": "155081",
-        "Pedasi": "155080",
-        "Muna": "155079",
-        "Degollado": "113886",
-        "Ameca": "113885",
-        "Nurum": "155078",
-        "Ojinaga": "113902",
-        "Janos": "113901",
-        "Cusihuiriachi": "113872",
-        "Hidalgo": "113881",
-        "Nuevo Laredo": "113874",
-        "Mugica": "113889",
-        "Tepic": "113883",
-        "Motozintla": "113897",
-        "Mazatan": "113898",
-        "Aguascalientes": "113882",
-        "Inde": "113877",
-        "Buenos Aires": "426167",
-        "Palmares": "808906",
-        "Montes de Oca": "723723",
-        "Santa Elena": "375949",
-        "Naranjal": "371262",
-        "Ciudad de Mexico": "160694",
-        "Palmares": "57881",
-        "Buenos Aires": "57885",
-        "Carrillo    Guanacaste Provi": "358408",
-        "Campo Alegre de Lourdes": "458846",
-        "Distrito Central": "398402",
-        "Cali": "351819",
-        "Vargas": "381959",
-        "Pima": "371432",
-        "Maicao": "351822"
-
+    var weathers : [WeathersInLocation] = [WeathersInLocation]()
+    var searching = false
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        let text = searchBar.text
+        if (!text!.isEmpty) {
+            citiesFiltered = cities.filter({$0.cityName.prefix(text!.count) == text!})
+        }
+        self.searching = true
+        self.tableView.reloadData()
+        
+    }
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar){
+        self.searching = false
+        self.navigationController?.popViewController(animated: true)
+    }
+    
+    var selectedCity: WeathersInLocation!
+    
+    var cities: [City] = [
+        City(cityName:"Ciudad de Buenos Aires", woeid:"468739"),
+        City(cityName:"Buenos Aires", woeid:"344675"),
+        City(cityName:"Phuket", woeid:"1226113"),
+        City(cityName:"Miami, FL", woeid:"2450022"),
+        City(cityName:"Anchorage, AL", woeid:"2354490"),
+        City(cityName:"Tjanjin", woeid:"2159908"),
+        City(cityName:"Kinshasa", woeid:"1290062"),
+        City(cityName:"Bogota", woeid:"368148")   
     ]
+    var citiesFiltered: [City] = [City]()
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if (segue.identifier == "unwindSegue") {
+            var mainView = segue.destination as! MasterViewController
+            mainView.weathers = self.weathers
+            print("unwindSegue")
+            print(String(mainView.weathers.count) + " mainViewWeathers" )
+//            self.tableView.reloadData()
+        }
+
+    }
     
     override func viewDidLoad() {
+        self.searchBar.delegate = self
         super.viewDidLoad()
-        self.tableView.dataSource = self
-        self.tableView.delegate = self
+        self.searchBar.placeholder = "Search by city name"
+//        self.tableView.dataSource = self
+//        self.tableView.delegate = self
+        
+        let indexPath = IndexPath(row: 0, section: 0)
+        tableView.insertRows(at: [indexPath], with: .automatic)
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -77,24 +72,42 @@ class CitiesSearchTableViewController: UITableViewController {
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 0
+        return 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return cities.count
+        if (searching) {
+            return citiesFiltered.count
+        } else {
+            return cities.count
+        }
     }
 
-    /*
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
-
-        // Configure the cell...
-
+        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! CityCell
+        if (searching) {
+            cell.textLabel?.text = citiesFiltered[indexPath.row].cityName
+        } else {
+            cell.textLabel?.text = cities[indexPath.row].cityName
+        }
+//        var targetController = na
         return cell
     }
-    */
+    
+
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        //Tutaj wchodzi przy wybraniu komorki
+       var city = cities[indexPath.row]
+//        var weather = WeathersInLocation()
+//        weather.location = city.cityName
+//        weather.woeid = city.woeid
+//        print("adding city " + city.cityName)
+//        weathers.append(weather)
+        (self.navigationController?.topViewController as! MasterViewController).getWeatherInformationForWOEID(woeid: city.woeid, locationName: city.cityName)
+        self.navigationController?.popViewController(animated: true)
+    }
+
 
     /*
     // Override to support conditional editing of the table view.
@@ -136,8 +149,8 @@ class CitiesSearchTableViewController: UITableViewController {
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+         Get the new view controller using segue.destination.
+         Pass the selected object to the new view controller.
     }
     */
 

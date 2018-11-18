@@ -3,74 +3,7 @@
    version = "1.0">
    <ContextStates>
       <ContextState
-         contextName = "static WeatherDAO.getImage(typeAbbr:):WeatherDAO.swift">
-      </ContextState>
-      <ContextState
-         contextName = "static WeatherDAO.getWeatherForNDays(json:):WeatherDAO.swift">
-      </ContextState>
-      <ContextState
          contextName = "closure #1 in static WeatherDAO.getWeatherInformationForWOEID(woeid:locationName:):WeatherDAO.swift">
-      </ContextState>
-      <ContextState
-         contextName = "DetailViewController.detailItem.didset:DetailViewController.swift">
-      </ContextState>
-      <ContextState
-         contextName = "MasterViewController.loadInitialCities():MasterViewController.swift">
-         <PersistentStrings>
-            <PersistentString
-               value = "weathers">
-            </PersistentString>
-            <PersistentString
-               value = "WeatherDAO.getWeatherInformationForWOEID(woeid: WOEID_HELSINKI, locationName: &quot;Helsinki&quot;)">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
-         contextName = "closure #1 in closure #1 in MasterViewController.tableView(_:cellForRowAt:):MasterViewController.swift">
-         <PersistentStrings>
-            <PersistentString
-               value = "weathers[0].weather_state_image">
-            </PersistentString>
-            <PersistentString
-               value = "cell.temperature.text">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
-         contextName = "closure #1 in DetailViewController.updateView(dayWeather:):DetailViewController.swift">
-         <PersistentStrings>
-            <PersistentString
-               value = "self.weatherStateImage.image">
-            </PersistentString>
-            <PersistentString
-               value = "self.header.title">
-            </PersistentString>
-            <PersistentString
-               value = "WeatherDAO.getImage(typeAbbr: &quot;hr&quot;)">
-            </PersistentString>
-            <PersistentString
-               value = "dayWeather.weather_state_image">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
-         contextName = "MasterViewController.tableView(_:cellForRowAt:):MasterViewController.swift">
-         <PersistentStrings>
-            <PersistentString
-               value = "WeatherDAO.downloadedimages">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
-         contextName = "MasterViewController.prepare(for:sender:):MasterViewController.swift">
-         <PersistentStrings>
-            <PersistentString
-               value = "weathers">
-            </PersistentString>
-            <PersistentString
-               value = "weathers[indexPath.row]">
-            </PersistentString>
-         </PersistentStrings>
       </ContextState>
       <ContextState
          contextName = "DetailViewController.configureView():DetailViewController.swift">
@@ -100,6 +33,148 @@
          <PersistentStrings>
             <PersistentString
                value = "img.size">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "static WeatherDAO.getImage(typeAbbr:):WeatherDAO.swift">
+      </ContextState>
+      <ContextState
+         contextName = "CitiesSearchTableViewController.tableView(_:didSelectRowAt:):CitiesSearchTableViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "weathers">
+            </PersistentString>
+            <PersistentString
+               value = "self.navigationController?.topViewController">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "closure #1 in DetailViewController.updateView(dayWeather:):DetailViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.weatherStateImage.image">
+            </PersistentString>
+            <PersistentString
+               value = "self.header.title">
+            </PersistentString>
+            <PersistentString
+               value = "WeatherDAO.getImage(typeAbbr: &quot;hr&quot;)">
+            </PersistentString>
+            <PersistentString
+               value = "dayWeather.weather_state_image">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "MasterViewController.tableView(_:cellForRowAt:):MasterViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "weathers">
+            </PersistentString>
+            <PersistentString
+               value = "WeatherDAO.downloadedimages">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "static WeatherDAO.getWeatherForNDays(json:):WeatherDAO.swift">
+      </ContextState>
+      <ContextState
+         contextName = "CitiesSearchTableViewController.viewDidLoad():CitiesSearchTableViewController.swift">
+      </ContextState>
+      <ContextState
+         contextName = "closure #1 in MasterViewController.getWeatherInformationForWOEID(woeid:locationName:):MasterViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "json![&quot;detail&quot;]">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "closure #1 in closure #1 in MasterViewController.tableView(_:cellForRowAt:):MasterViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "weathers[0].weather_state_image">
+            </PersistentString>
+            <PersistentString
+               value = "cell.temperature.text">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "CitiesSearchTableViewController.tableView(_:numberOfRowsInSection:):CitiesSearchTableViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.weathers">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "MasterViewController.prepare(for:sender:):MasterViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "weathers">
+            </PersistentString>
+            <PersistentString
+               value = "weathers[indexPath.row]">
+            </PersistentString>
+            <PersistentString
+               value = "controller.weathers">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "DetailViewController.detailItem.didset:DetailViewController.swift">
+      </ContextState>
+      <ContextState
+         contextName = "MasterViewController.loadInitialCities():MasterViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "weathers">
+            </PersistentString>
+            <PersistentString
+               value = "WeatherDAO.getWeatherInformationForWOEID(woeid: WOEID_HELSINKI, locationName: &quot;Helsinki&quot;)">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "MasterViewController.unwindToMaster(_:):MasterViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "(sender.source as! CitiesSearchTableViewController).tableView.">
+            </PersistentString>
+            <PersistentString
+               value = "sender.source">
+            </PersistentString>
+            <PersistentString
+               value = "sender">
+            </PersistentString>
+            <PersistentString
+               value = "sender.destination">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "CitiesSearchTableViewController.prepare(for:sender:):CitiesSearchTableViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "segue.identifier">
+            </PersistentString>
+            <PersistentString
+               value = "segue.kind">
+            </PersistentString>
+            <PersistentString
+               value = "self">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "MasterViewController.getWeatherForNDays(json:):MasterViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "json![&quot;consolidated_weather&quot;]">
             </PersistentString>
          </PersistentStrings>
       </ContextState>

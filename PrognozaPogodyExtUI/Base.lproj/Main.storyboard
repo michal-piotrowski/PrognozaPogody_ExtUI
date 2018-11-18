@@ -299,11 +299,13 @@
                     <navigationItem key="navigationItem" title="Michał Piotrowski" id="Zdf-7t-Un8">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="eCv-N3-Lm2">
                             <connections>
-                                <segue destination="qCo-pt-iDY" kind="show" id="0aC-hg-Bp4"/>
+                                <action selector="showSearchScreen:" destination="7bK-jq-Zjz" id="ZEu-AF-Dqt"/>
+                                <segue destination="qCo-pt-iDY" kind="show" identifier="addCity" id="vEm-nm-xuc"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="addButton" destination="eCv-N3-Lm2" id="VzC-rc-DZW"/>
                         <outlet property="tableView" destination="r7i-6Z-zg0" id="iqf-XP-Pjh"/>
                     </connections>
                 </tableViewController>
@@ -314,9 +316,8 @@
         <!--Cities Search Table View Controller-->
         <scene sceneID="RoO-dU-2sY">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="0yF-ky-zsS" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <tableViewController id="qCo-pt-iDY" customClass="CitiesSearchTableViewController" customModule="PrognozaPogodyExtUI" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="Z86-xj-OQp">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="Z86-xj-OQp" customClass="CitiesSearchController">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -326,7 +327,7 @@
                             <textInputTraits key="textInputTraits"/>
                         </searchBar>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" textLabel="uHd-e3-eM4" style="IBUITableViewCellStyleDefault" id="RGn-vo-kvL">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" textLabel="uHd-e3-eM4" style="IBUITableViewCellStyleDefault" id="RGn-vo-kvL" customClass="CityCell" customModule="PrognozaPogodyExtUI" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="72" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="RGn-vo-kvL" id="o0z-lv-RZs">
@@ -343,6 +344,9 @@
                                         </label>
                                     </subviews>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <segue destination="bj9-AC-q8Q" kind="unwind" identifier="unwindSegue" unwindAction="unwindToMaster:" id="MJl-e2-sfB"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -350,12 +354,15 @@
                             <outlet property="delegate" destination="qCo-pt-iDY" id="gCf-28-zPk"/>
                         </connections>
                     </tableView>
+                    <navigationItem key="navigationItem" id="HIs-Gl-3IL"/>
                     <connections>
                         <outlet property="searchBar" destination="gRn-It-uYB" id="UwQ-id-LMg"/>
                     </connections>
                 </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="0yF-ky-zsS" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="bj9-AC-q8Q" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="1462" y="-629"/>
+            <point key="canvasLocation" x="2400.8000000000002" y="-629.2353823088456"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="r7l-gg-dq7">

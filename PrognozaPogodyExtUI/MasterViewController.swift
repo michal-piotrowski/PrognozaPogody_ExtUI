@@ -9,38 +9,41 @@
 import UIKit
 
 class MasterViewController: UITableViewController {
+    //
 
+    @IBOutlet weak var addButton: UIBarButtonItem!
     var detailViewController: DetailViewController? = nil
     var weathers = [WeathersInLocation]()
+//    var selectedItem: WeathersInLocation!
     var downloadedImages: [String: UIImage] = [:]
     
     private let WOEID_WARSAW: String = "523920"
     private let WOEID_HELSINKI: String = "565346"
     private let WOEID_OSLO: String = "862592"
-
+    
+    
+    
+    @IBAction func unwindToMaster(_ sender: UIStoryboardSegue){
+//        (sender.source as! CitiesSearchTableViewController).
+        self.weathers = (sender.source as! CitiesSearchTableViewController).weathers
+        self.tableView.reloadData()
+    }
+    
+    
     override func viewDidLoad() {
         
         super.viewDidLoad()
         self.tableView.dataSource = self
         self.tableView.delegate = self
+
         loadInitialCities();
-        
-        // Do any additional setup after loading the view, typically from a nib.
         navigationItem.leftBarButtonItem = editButtonItem
         let indexPath = IndexPath(row: 0, section: 0)
         tableView.insertRows(at: [indexPath], with: .automatic)
-//
-//        let addButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(insertNewObject(_:)))
-        
-//        navigationItem.rightBarButtonItem = addButton
-//        if let split = splitViewController {
-//            let controllers = split.viewControllers
-//            detailViewController = (controllers[controllers.count-1] as! UINavigationController).topViewController as? DetailViewController
-//        }
     }
     
     func loadInitialCities() {
-        // get weather for WARSAW, LONDON, HELSINKI FROM API
+        // get weather for WARSAW, HELSINKI, OSLO FROM API
         self.getWeatherInformationForWOEID(woeid: WOEID_WARSAW, locationName: "Warszawa")
         self.getWeatherInformationForWOEID(woeid: WOEID_HELSINKI, locationName: "Helsinki")
         self.getWeatherInformationForWOEID(woeid: WOEID_OSLO, locationName: "Oslo")
@@ -64,7 +67,6 @@ class MasterViewController: UITableViewController {
                     DispatchQueue.main.async {
                         self.tableView.reloadData()
                     }
-                    //                    self.setInitialView()
                 }
                 catch
                 {
@@ -99,20 +101,23 @@ class MasterViewController: UITableViewController {
     
     func getWeatherForNDays (json: [String: Any]?) -> [DayWeatherInLocation] {
         var weathers: [DayWeatherInLocation] = [DayWeatherInLocation]()
-        for i in 0...(json!["consolidated_weather"] as! [[String: Any]]).count - 1 {
-            let singleWeatherDict = (json!["consolidated_weather"]as! [[String: Any]])[i]
-            let dayWeather = DayWeatherInLocation()
-            dayWeather.min_temp = (singleWeatherDict["min_temp"] as! NSNumber)
-            dayWeather.max_temp = (singleWeatherDict["max_temp"] as! NSNumber)
-            dayWeather.weather_state_name = (singleWeatherDict["weather_state_name"] as! String)
-            dayWeather.weather_state_abbr = (singleWeatherDict["weather_state_abbr"] as! String)
-            dayWeather.wind_speed = (singleWeatherDict["wind_speed"] as! NSNumber)
-            dayWeather.wind_direction = (singleWeatherDict["wind_direction"] as! NSNumber)
-            dayWeather.air_pressure = (singleWeatherDict["air_pressure"] as! NSNumber)
-            dayWeather.applicable_date = (singleWeatherDict["applicable_date"] as! String)
-            WeatherDAO.downloadImage(typeAbbr: dayWeather.weather_state_abbr!)
-            weathers.append(dayWeather)
-        }
+
+            for i in 0...(json!["consolidated_weather"] as! [[String: Any]]).count - 1 {
+                let singleWeatherDict = (json!["consolidated_weather"]as! [[String: Any]])[i]
+                let dayWeather = DayWeatherInLocation()
+                dayWeather.min_temp = (singleWeatherDict["min_temp"] as! NSNumber)
+                dayWeather.max_temp = (singleWeatherDict["max_temp"] as! NSNumber)
+                dayWeather.weather_state_name = (singleWeatherDict["weather_state_name"] as! String)
+                dayWeather.weather_state_abbr = (singleWeatherDict["weather_state_abbr"] as! String)
+                dayWeather.wind_speed = (singleWeatherDict["wind_speed"] as! NSNumber)
+                dayWeather.wind_direction = (singleWeatherDict["wind_direction"] as! NSNumber)
+                dayWeather.air_pressure = (singleWeatherDict["air_pressure"] as! NSNumber)
+                dayWeather.applicable_date = (singleWeatherDict["applicable_date"] as! String)
+                WeatherDAO.downloadImage(typeAbbr: dayWeather.weather_state_abbr!)
+                weathers.append(dayWeather)
+            }
+    
+        
         return weathers;
     }
 
@@ -120,13 +125,6 @@ class MasterViewController: UITableViewController {
         clearsSelectionOnViewWillAppear = splitViewController!.isCollapsed
         super.viewWillAppear(animated)
     }
-//
-//    @objc
-//    func insertNewObject(_ sender: Any) {
-//        weathers.insert(WeathersInLocation(), at: 0)
-//        let indexPath = IndexPath(row: 0, section: 0)
-//        tableView.insertRows(at: [indexPath], with: .automatic)
-//    }
 
     // MARK: - Segues
 
@@ -139,6 +137,9 @@ class MasterViewController: UITableViewController {
                 controller.navigationItem.leftBarButtonItem = splitViewController?.displayModeButtonItem
                 controller.navigationItem.leftItemsSupplementBackButton = true
             }
+        } else if segue.identifier == "addCity" {
+            let controller = segue.destination as! CitiesSearchTableViewController
+            controller.weathers = self.weathers
         }
     }
 
@@ -164,7 +165,10 @@ class MasterViewController: UITableViewController {
         } else {
             cell.temperature.text = "emptyArray"
         }
-        cell.weatherIcon.image = downloadedImages[weather.weathers[0].weather_state_abbr]
+        if (!weather.weathers.isEmpty) {
+            cell.weatherIcon.image = downloadedImages[weather.weathers[0].weather_state_abbr]
+        }
+        
         
         return cell
     }
@@ -186,35 +190,6 @@ class MasterViewController: UITableViewController {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view.
         }
     }
-//
-//    func parseJson(weather: WeathersInLocation) {
-//        let url: URL = URL(string: "https://www.metaweather.com/api/location/\(weather.woeid!)/")!
-//        let session = URLSession.shared
-//        var json: [String: Any] = [:]
-//                session.dataTask(with: url, completionHandler: {
-//                    (data, response, error) in
-//                    if data != nil {
-//                        do {
-//                            json = try JSONSerialization.jsonObject(with: data!, options: []) as! [String: Any]
-//                            let weathers = WeatherDAO.getWeatherForNDays(json: json)
-//                            //                    self.setInitialView()
-//                            DispatchQueue.main.async {
-//                                cell.cityName.text = weather.location
-//                                    cell.weatherIcon.image = weathers[0].weather_state_image
-//                                cell.temperature.text = String(format:"%.1f°C", weathers[0].max_temp.floatValue)
-//                                //                    return cell
-//                                tableView.reloadData()
-//                            }
-//
-//                        }
-//                        catch
-//                        {
-//                            return
-//                        }
-//                    }
-//                }).resume()
-//    }
-
 
 }
 

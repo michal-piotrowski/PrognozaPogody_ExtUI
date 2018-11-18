@@ -16,7 +16,13 @@ class DetailViewController: UIViewController {
         // Update the user interface for the detail item.
         if detailItem != nil {
             currentlyDisplayedWeatherInd = 0
-            updateView(dayWeather: detailItem?.weathers[0] ?? DayWeatherInLocation())
+            if (!detailItem!.weathers.isEmpty) {
+                updateView(dayWeather: detailItem?.weathers[0] ?? DayWeatherInLocation())
+            } else {
+                print("WARNING" + detailItem!.location + "Has No Weather data")
+            
+            }
+            
         }
     }
 
@@ -85,9 +91,6 @@ class DetailViewController: UIViewController {
     
     func updateView(dayWeather: DayWeatherInLocation) {
         DispatchQueue.main.async {
-//            WeatherDAO.downloadImage(typeAbbr: "hr")
-//            self.weatherStateImage.image = WeatherDAO.downloadedImages["hr"]!
-//            self.weatherStateImage.setNeedsDisplay()
             self.header.title = self.detailItem?.location
             self.weatherStateImage.image =  WeatherDAO.downloadedImages[dayWeather.weather_state_abbr]
             self.weatherState.text = dayWeather.weather_state_name
